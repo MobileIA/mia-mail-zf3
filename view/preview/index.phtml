@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Email Preview</title>
+        <style>
+            body, html, iframe, h2 { margin: 0; padding: 0;}
+            .header { color: #FFF; width: 100%; height: 44px; background-color: #000; border-bottom: 2px solid #3399ff; padding: 5px; }
+            iframe { width: 100%; height: calc(100% - 54px); border: 0px; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function onSelectTemplate(){
+                var selector = document.getElementById("file-selector");
+                var file = selector.options[selector.selectedIndex].value;
+                document.getElementById('frame-template').src = '<?php echo $this->url('email-preview-file'); ?>?src=' + file;
+            };
+        </script>
+        <div class="header">
+            <select id="file-selector" name="files" onchange="onSelectTemplate()">
+                <option value="">Seleccionar template</option>
+                <?php foreach($this->templates as $template): ?>
+                <option value="<?php echo $template; ?>"><?php echo $template; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <iframe id="frame-template" src="<?php echo $this->url('email-preview-file'); ?>" />
+    </body>
+</html>

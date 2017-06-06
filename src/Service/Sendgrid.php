@@ -87,8 +87,6 @@ class Sendgrid
      */
     protected function getViewModel($template, $vars)
     {
-        // Creamos resolver
-        $this->view->setResolver($this->getResolver($template));
         // Creamos view model
         $viewModel = new \Zend\View\Model\ViewModel();
         $viewModel->setTemplate($template)->setVariables($vars);
@@ -107,11 +105,22 @@ class Sendgrid
         return $resolver;
     }
     /**
+     * 
+     * @return \Zend\View\Resolver\TemplatePathStack
+     */
+    protected function getResolverStack()
+    {
+        return new \Zend\View\Resolver\TemplatePathStack(['script_paths' => [$this->templateFolder]]);
+    }
+    /**
      * Funcion que se encarga de crear el ViewRender
      */
     protected function createView()
     {
+        // Creamos View Render
         $this->view = new \Zend\View\Renderer\PhpRenderer();
+        // Creamos resolver
+        $this->view->setResolver($this->getResolverStack());
     }
     /**
      * Funcion que se encarga de crear el servicio
