@@ -42,6 +42,11 @@ class Sendgrid
      */
     public $templateFolder = '';
     /**
+     * URL Base para las imagenes
+     * @var string
+     */
+    public $baseUrl = '';
+    /**
      *
      * @var \Zend\View\Renderer\PhpRenderer
      */
@@ -89,7 +94,7 @@ class Sendgrid
     {
         // Creamos view model
         $viewModel = new \Zend\View\Model\ViewModel();
-        $viewModel->setTemplate($template)->setVariables($vars);
+        $viewModel->setTemplate($template)->setVariables(array_merge(array('baseUrl' => $this->baseUrl), $vars));
         // Devolvemos view model
         return $viewModel;
     }
@@ -155,6 +160,9 @@ class Sendgrid
         }
         if(array_key_exists('template_folder', $config)){
             $this->templateFolder = $config['template_folder'];
+        }
+        if(array_key_exists('base_url', $config)){
+            $this->baseUrl = $config['base_url'];
         }
     }
 }

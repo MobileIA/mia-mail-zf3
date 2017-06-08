@@ -12,5 +12,8 @@ The library that send email.
     'name' => 'MobileIA',
     'reply_to' => 'admin@mobileia.com',
     'template_folder' => __DIR__ . '/../view/email/',
+    'base_url' => 'http://ohduty.mobileia.com/'
 ]
 ```
+
+2. Ver Previsualizador de emails
