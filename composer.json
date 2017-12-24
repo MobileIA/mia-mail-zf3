@@ -1,7 +1,7 @@
 {
     "name": "mobileia/mia-mail-zf3",
     "description": "The library that send email.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
@@ -29,5 +29,10 @@
         "classmap": [
             "./Module.php"
         ]
+    },
+    "extra": {
+        "zf": {
+            "component": "MIAEmail"
+        }
     }
 }
